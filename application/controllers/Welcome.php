@@ -3,6 +3,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Welcome extends CI_Controller {
 
+	public function __construct()
+	{
+		parent::__construct();
+		$this->load->model('users_model', 'Users');
+	}
+
 	/**
 	 * Index Page for this controller.
 	 *
@@ -20,6 +26,13 @@ class Welcome extends CI_Controller {
 	 */
 	public function index()
 	{
-		$this->load->view('welcome_message');
+		$data['users'] = $this->Users->fetchUsers();
+		$data['states'] = $this->Users->fetchStates();
+		$data['lga'] = $this->Users->fetchLGA();
+		$data['sn'] = 1;
+
+		$this->load->view('users/layout/master');
+		$this->load->view('users/index', $data);
+		$this->load->view('users/layout/footer');
 	}
 }
