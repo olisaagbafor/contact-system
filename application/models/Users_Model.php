@@ -6,13 +6,6 @@ class Users_Model extends CI_Model
 {
 
 	protected $users = 'users';
-	protected $states = 'states';
-	protected $lga = 'local_government_area';
-
-	public function __construct()
-	{
-		parent::__construct();
-	}
 
 	public function register()
 	{
@@ -26,16 +19,4 @@ class Users_Model extends CI_Model
 		return $query->result_array();
 	}
 
-	public function fetchStates()
-	{
-		$query = $this->db->get($this->states);
-		return $query->result_array();
-	}
-
-
-	public function fetchLGA()
-	{
-		$query = $this->db->get($this->lga);
-		return $query->result_array();
-	}
 }

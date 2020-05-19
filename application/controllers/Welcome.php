@@ -7,6 +7,8 @@ class Welcome extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('users_model', 'Users');
+		$this->load->model('states_model', 'States');
+		$this->load->model('lga_model', 'LGA');
 	}
 
 	/**
@@ -27,8 +29,8 @@ class Welcome extends CI_Controller {
 	public function index()
 	{
 		$data['users'] = $this->Users->fetchUsers();
-		$data['states'] = $this->Users->fetchStates();
-		$data['lga'] = $this->Users->fetchLGA();
+		$data['states'] = $this->States->fetchStates();
+		$data['lga'] = $this->LGA->fetchLGA();
 		$data['sn'] = 1;
 
 		$this->load->view('users/layout/master');
