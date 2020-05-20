@@ -26,7 +26,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						echo '<li>'. $error .'</li>';
 						foreach ($form_errors as $form_error):?>
 							<li><?php echo $form_error; ?></li>
-							<?php endforeach;
+						<?php endforeach;
 						?>
 					</ul>
 				</div>
@@ -35,43 +35,43 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			?>
 			<div class="card shadow">
 				<div class="card-header bg-dark rounded-top">
-					<h3 class="text-center my-xl-1 text-light">Register User</h3>
+					<h3 class="text-center my-xl-1 text-light">Edit User</h3>
 				</div>
 				<div class="card-body">
-					<form action="registry" method="post" enctype="multipart/form-data">
+					<form action="user/update" method="post" enctype="multipart/form-data">
 						<div class="row">
 							<div class="col-xl-9">
 								<div class="form-row">
 									<div class="col-xl-6">
 										<div class="form-group">
 											<label for="first_name">First Name:</label>
-											<input type="text" id="first_name" name="first_name" value="<?= set_value('first_name')?>" class="form-control">
+											<input type="text" id="first_name" name="first_name" value="<?= $user['first_name']; ?>" class="form-control">
 										</div>
 									</div>
 									<div class="col-xl-6">
 										<div class="form-group">
 											<label for="surname">Surname:</label>
-											<input type="text" id="surname" name="surname" value="<?= set_value('surname')?>" class="form-control">
+											<input type="text" id="surname" name="surname" value="<?= $user['surname']; ?>" class="form-control">
 										</div>
 									</div>
 								</div>
 
 								<div class="form-group">
 									<label for="other_names">Other Names:</label>
-									<input type="text" id="other_names" name="other_names" value="<?= set_value('other_names')?>" class="form-control">
+									<input type="text" id="other_names" name="other_names" value="<?= $user['other_names']; ?>" class="form-control">
 								</div>
 
 								<div class="form-row">
 									<div class="col-xl-6">
 										<div class="form-group">
 											<label for="contact">Contact:</label>
-											<input type="tel" id="contact" name="contact" value="<?= set_value('contact')?>" class="form-control">
+											<input type="tel" id="contact" name="contact" value="<?= $user['contact']; ?>" class="form-control">
 										</div>
 									</div>
 									<div class="col-xl-6">
 										<div class="form-group">
 											<label for="email">Email:</label>
-											<input type="email" id="email" name="email" value="<?= set_value('email')?>" class="form-control">
+											<input type="email" id="email" name="email" value="<?= $user['email']; ?>" class="form-control">
 										</div>
 									</div>
 								</div>
@@ -81,8 +81,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 										<div class="form-group">
 											<label for="gender">Gender:</label>
 											<select name="gender" id="gender" class="form-control">
-												<option value="male">Male</option>
-												<option value="female">Female</option>
+												<option value="">Select gender</option>
+												<option value="1" <?= ($user['gender'] == 'male')? 'selected' : '' ?> >Male</option>
+												<option value="2"  <?= ($user['gender'] == 'female')? 'selected' : '' ?>>Female</option>
 											</select>
 										</div>
 									</div>
@@ -105,7 +106,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 													?>
 													<option value="<?= $state['id'] ?>"
 														<?php echo  set_select('state_of_origin', $state['id']); ?> ><?= $state['name'] ?></option>
-												<?php
+													<?php
 												}
 												?>
 											</select>
@@ -142,7 +143,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 								<input type="submit" class="btn btn-dark" value="Register">
 							</div>
 						</div>
-					<?= form_close();?>
+						<?= form_close();?>
 				</div>
 			</div>
 		</div>
@@ -151,12 +152,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 <script src="<?= site_url('assets/dist/imoViewer-min.js') ?>"></script>
 <script>
-	$(document).ready(function () {
-	    $('#state').change(function () {
-			var state_id = $(this).val();
-			$.get(window.origin + '/contact-system/state/' + state_id, null, function (data) {
-			    console.log(data);
-				$('#lga').html(data);
+    $(document).ready(function () {
+        $('#state').change(function () {
+            var state_id = $(this).val();
+            $.get(window.origin + '/contact-system/state/' + state_id, null, function (data) {
+                console.log(data);
+                $('#lga').html(data);
             })
         });
 

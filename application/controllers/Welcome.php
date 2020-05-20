@@ -31,10 +31,15 @@ class Welcome extends CI_Controller {
 		$data['users'] = $this->Users->fetchUsers();
 		$data['states'] = $this->States->fetchStates();
 		$data['lga'] = $this->LGA->fetchLGA();
-		$data['sn'] = 1;
 
 		$this->load->view('users/layout/master');
 		$this->load->view('users/index', $data);
 		$this->load->view('users/layout/footer');
+	}
+
+	public function getLGA($state_id)
+	{
+		$data = $this->LGA->getLGA($state_id);
+		$this->load->view('request', compact('data'));
 	}
 }

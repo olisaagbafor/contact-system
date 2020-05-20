@@ -13,4 +13,10 @@ class LGA_Model extends CI_Model
 		$query = $this->db->get($this->lga);
 		return $query->result_array();
 	}
+
+	public function getLGA($state_id)
+	{
+		$query = $this->db->get_where($this->lga, array('state_id' => $state_id));
+		return $query->result_array();
+	}
 }
