@@ -51,11 +51,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 $route['default_controller'] = 'welcome';
 $route['state/(:num)'] = 'welcome/getLGA/$1';
-$route['edit/(:num)'] = 'users/edit/$1';
-$route['view/(:num)'] = 'users/view/$1';
-$route['delete/(:num)'] = 'users/destroy/$1';
+$route['user/edit/(:num)'] = 'users/edit/$1';
+$route['user/view/(:num)'] = 'users/view/$1';
+$route['user/delete/(:num)'] = 'users/destroy/$1';
+$route['user/confirm/delete/(:num)/(:num)']['POST'] = 'users/destroy/$1/$2';
 $route['user/update/(:num)'] = 'users/update/$1';
-$route['home'] = 'welcome';
 $route['register'] = 'users';
 $route['registry'] = 'users/store';
 $route['404_override'] = '';

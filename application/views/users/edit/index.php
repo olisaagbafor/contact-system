@@ -38,7 +38,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					<h3 class="text-center my-xl-1 text-light">Edit User</h3>
 				</div>
 				<div class="card-body">
-					<form action="user/update" method="post" enctype="multipart/form-data">
+					<form action="<?= site_url('user/update/'.$user['id']) ?>" method="post" enctype="multipart/form-data">
 						<div class="row">
 							<div class="col-xl-9">
 								<div class="form-row">
@@ -90,7 +90,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 									<div class="col-xl-9">
 										<div class="form-group">
 											<label for="address">Address:</label>
-											<input type="text" id="address" name="address" value="<?= set_value('address')?>" class="form-control">
+											<input type="text" id="address" name="address" value="<?= $user['address']; ?>" class="form-control">
 										</div>
 									</div>
 								</div>
@@ -104,8 +104,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 												<?php
 												foreach ($states as $state) {
 													?>
-													<option value="<?= $state['id'] ?>"
-														<?php echo  set_select('state_of_origin', $state['id']); ?> ><?= $state['name'] ?></option>
+													<option value="<?= $state['id'] ?>" <?= ($user['state_of_origin'] == $state['id']) ? 'selected' : '' ?> ><?= $state['name'] ?></option>
 													<?php
 												}
 												?>
@@ -117,6 +116,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 											<label for="lga">Local Government Area:</label>
 											<select name="local_government_area" id="lga" class="form-control">
 												<option value="">--select local government area--</option>
+												<?php
+												foreach ($lgas as $lga) {
+													?>
+													<option value="<?= $lga['id'] ?>" <?= ($user['local_government_area'] == $lga['id']) ? 'selected' : '' ?> ><?= $lga['name'] ?></option>
+													<?php
+												}
+												?>
 											</select>
 										</div>
 									</div>
@@ -126,13 +132,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							<div class="col-xl-3">
 								<div class="form-group">
 									<div class="card-img bg-light shadow" style="min-height: 150px;">
-										<img src="" alt="" id="image-previewer" class="img-fluid bg-dark rounded" style="width: 100%;">
-									</div>
-								</div>
-								<div class="form-group">
-									<div class="custom-file my-xl-2">
-										<input type="file" id="file-input" value="<?=set_value('userfile')?>" name="userfile" class="custom-file-input">
-										<label for="file-input" class="custom-file-label">Choose</label>
+										<img src="<?= site_url('photo/'.$user['photo']) ?>" alt="" id="image-previewer" class="img-fluid bg-dark rounded" style="width: 100%;">
 									</div>
 								</div>
 							</div>
@@ -140,7 +140,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 						<div class="row flex-row-reverse mr-xl-5">
 							<div class="form-group">
-								<input type="submit" class="btn btn-dark" value="Register">
+								<input type="submit" class="btn btn-dark" value="Update">
 							</div>
 						</div>
 						<?= form_close();?>

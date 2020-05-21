@@ -14,10 +14,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<header>
 		<nav class="flex-wrap mt-3 bg-dark py-3">
 			<ul class="d-xl-inline-flex mb-0 pl-4">
-				<a href="#" class="text-decoration-none px-2"><li class="nav-link bg-light rounded text-dark">Home</li></a>
-				<a href="#" class="text-decoration-none px-2"><li class="nav-link bg-light rounded text-dark">Home</li></a>
-				<a href="<?= site_url('home')?>" class="text-decoration-none px-2"><li class="nav-link bg-light rounded text-dark">Dashboard</li></a>
-				<a href="<?= site_url('register') ?>" class="text-decoration-none px-2"><li class="nav-link bg-light rounded text-dark">New Contact</li></a>
+				<a href="<?= site_url('/')?>" class="text-decoration-none px-2"><li class="nav-link bg-light rounded text-dark">Dashboard</li></a>
+				<a href="<?= site_url('register') ?>" class="text-decoration-none px-2"><li class="nav-link bg-light rounded text-dark">Add Contact</li></a>
+				<a href="#" class="text-decoration-none px-2"><li class="nav-link bg-light rounded text-dark">States</li></a>
+				<a href="#" class="text-decoration-none px-2"><li class="nav-link bg-light rounded text-dark">Local Govt.</li></a>
 			</ul>
 		</nav>
 	</header>

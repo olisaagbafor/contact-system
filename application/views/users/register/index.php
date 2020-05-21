@@ -38,7 +38,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					<h3 class="text-center my-xl-1 text-light">Register User</h3>
 				</div>
 				<div class="card-body">
-					<form action="registry" method="post" enctype="multipart/form-data">
+					<form action="<?= site_url('registry') ?>" method="post" enctype="multipart/form-data">
 						<div class="row">
 							<div class="col-xl-9">
 								<div class="form-row">

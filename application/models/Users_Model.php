@@ -19,12 +19,6 @@ class Users_Model extends CI_Model
 		return $query->result_array();
 	}
 
-	public function viewUser($user)
-	{
-		$query = $this->db->get_where($this->users, array('id' => $user));
-		return $query->result();
-	}
-
 
 
 	public function getUser($user)
@@ -37,16 +31,26 @@ class Users_Model extends CI_Model
 
 	public function updateUser($user, $post)
 	{
-		$query = $this->db->update($this->users, $post, array('id' => $user));
-		return $query->result();
+		$this->db->update($this->users, $post, array('id' => $user));
+		$query = $this->db->get_where($this->users, array('id' => $user))->row_array();
+		return $query;
 	}
 
 
 
-	public function destroyUser($user)
+	public function destroyUser($user, $key = FALSE)
 	{
-		$query = $this->db->delete($this->users, array('id' => $user));
-		return $query;
+		if ($key === FALSE)
+		{
+			return FALSE;
+		} elseif ($key == 2920157345 )
+		{
+			$query = $this->db->delete($this->users, array('id' => $user));
+			return $query;
+		} else {
+			return FALSE;
+		}
+
 	}
 
 }

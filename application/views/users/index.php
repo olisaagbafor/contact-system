@@ -3,6 +3,23 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
 
+<div class="container-xl">
+	<div class="row justify-content-center">
+		<?php
+		if (isset($success)): ?>
+			<div class="alert alert-success col-xl-12 py-xl-3 mt-xl-3">
+				<?= $success; ?>
+			</div>
+		<?php endif;
+		if (isset($error)) : ?>
+			<div class="alert alert-danger col-xl-12 py-xl-3 mt-xl-3">
+				<?= $error; ?>
+			</div>
+		<?php endif;
+		?>
+	</div>
+</div>
+
 <div class="container-xl shadow">
 	<div class="row my-3 p-2">
 		<div class="col-xl-4 justify-content-center ">
@@ -56,15 +73,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			foreach ($users as $user) {
 				?>
 				<tr class="text-center">
-					<td><img src="photo/<?=$user['photo']?>" alt="" class="img-fluid rounded-circle ml-xl-4 shadow" style="width: 40px;"></td>
+					<td><img src="<?= site_url('photo/'.$user['photo']) ?>" alt="" class="img-fluid rounded-circle ml-xl-4 shadow" style="width: 40px;"></td>
 					<td><?= $user['surname'].' '.$user['first_name'].' '.$user['other_names'] ; ?></td>
 					<td><?= $user['contact'] ; ?></td>
 					<td><?= $user['email'] ; ?></td>
 					<td><?= $user['gender'] ; ?></td>
 					<td>
-						<a href="edit/<?= $user['id'] ; ?>" class="btn btn-primary btn-sm">Edit</a>
-						<a href="view/<?= $user['id'] ; ?>" class="btn btn-dark btn-sm">View</a>
-						<a href="delete/<?= $user['id'] ; ?>" class="btn btn-danger btn-sm">Delete</a>
+						<a href="<?= site_url('user/edit/'.$user['id'])?>" class="btn btn-primary btn-sm">Edit</a>
+						<a href="<?= site_url('user/view/'.$user['id'])?>" class="btn btn-dark btn-sm">View</a>
+						<a href="<?= site_url('user/delete/'.$user['id'])?>" class="btn btn-danger btn-sm">Delete</a>
 					</td>
 				</tr>
 			<?php
