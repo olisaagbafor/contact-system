@@ -18,9 +18,15 @@ class States_Model extends CI_Model
 		endif;
 	}
 
-	public function updateState($state)
+	public function updateState($state = FALSE)
 	{
-		$query = $this->db->update($this->states, $this->input->post(), array('id' => $state));
-		return $query;
+		if ($state === FALSE) :
+			$query = $this->db->insert($this->states, $this->input->post());
+			return $query;
+		else:
+			$query = $this->db->update($this->states, $this->input->post(), array('id' => $state));
+			return $query;
+		endif;
 	}
+
 }

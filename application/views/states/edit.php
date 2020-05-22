@@ -25,18 +25,26 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			<?php endif;?>
 			<div class="card shadow">
 				<div class="card-header bg-dark">
-					<h5 class="text-light text-center">Edit State</h5>
+					<h5 class="text-light text-center">State Setup</h5>
 				</div>
 				<div class="card-body">
-					<form action="<?= site_url('state/edit/'.$state['id']) ?>" method="post">
+					<?php if (isset($state['id']) && ($state['id'])) : ?>
+					<form action="<?= site_url('state/setup/edit/'.$state['id']) ?>" method="post">
+					<?php else: ?>
+					<form action="<?= site_url('state/setup/create/') ?>" method="post">
+					<?php endif; ?>
 						<div class="row">
 							<div class="col-xl-12">
 								<div class="form-group">
 									<label for="state">State</label>
-									<input type="text" id="state" value="<?=($state['name']) ? $state['name'] : '' ?>" <?= set_value('name') ?> name="name" class="form-control">
+									<?php if (isset($state)) : ?>
+									<input type="text" id="state" value="<?=(isset($state['name']) && ($state['name'])) ? $state['name'] : '' ?>" <?= set_value('name') ?> name="name" class="form-control">
+									<?php else: ?>
+									<input type="text" id="state" <?= set_value('name') ?> name="name" class="form-control">
+									<?php endif;?>
 								</div>
 								<div class="form-group btn-group-sm">
-									<input type="submit" class="btn btn-dark float-xl-right mx-xl-3" value="Update">
+									<input type="submit" class="btn btn-dark float-xl-right mx-xl-3" value="Submit">
 								</div>
 							</div>
 						</div>

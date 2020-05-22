@@ -20,16 +20,26 @@ class States extends CI_Controller
 		$this->load->view('users/layout/footer');
 	}
 
-	public function edit($state, $error = FALSE, $success = FALSE)
+	public function edit($state = FALSE, $error = FALSE, $success = FALSE)
 	{
-		$state = $this->States->fetchStates($state);
-		if (($error) || ($success)) :
-			$state['error'] = $error;
-			$state['success'] = $success;
+		if ($state === FALSE) :
+			if (($error) || ($success)) :
+				$state['error'] = $error;
+				$state['success'] = $success;
+			endif;
+			$this->load->view('users/layout/master');
+			$this->load->view('states/edit', compact('state'));
+			$this->load->view('users/layout/footer');
+		else:
+			$state = $this->States->fetchStates($state);
+			if (($error) || ($success)) :
+				$state['error'] = $error;
+				$state['success'] = $success;
+			endif;
+			$this->load->view('users/layout/master');
+			$this->load->view('states/edit', compact('state'));
+			$this->load->view('users/layout/footer');
 		endif;
-		$this->load->view('users/layout/master');
-		$this->load->view('states/edit', compact('state'));
-		$this->load->view('users/layout/footer');
 	}
 
 	public function update($state)
@@ -43,6 +53,22 @@ class States extends CI_Controller
 			else:
 				$message = 'State Failed to Update, Please try again or Contact Admin for help!';
 				$this->edit($state, $message,FALSE);
+			endif;
+		endif;
+	}
+
+
+	public function store()
+	{
+		if ($this->form_validation->run('location') === FALSE) :
+			$this->edit();
+		else:
+			if ($this->States->updateState()) :
+				$message = 'State has been added Successfully';
+				$this->edit(FALSE, FALSE, $message);
+			else:
+				$message = 'State Failed to Create, please try again or contact admin for help!';
+				$this->edit(FALSE, $message, FALSE);
 			endif;
 		endif;
 	}
