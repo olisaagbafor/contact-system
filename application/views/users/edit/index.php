@@ -5,34 +5,30 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <div class="container-xl">
 	<div class="row my-5 justify-content-center">
 		<div class="col-xl-8">
-			<?php
-			if (isset($success) || isset($upload_data)) {
-				?>
+			<?php if (isset($success) || isset($upload_data)) : ?>
 				<div class="alert alert-success py-xl-3">
 					<ul>
-						<?php
-						echo '<li>'. $success .'</li>';
-						?>
+						<li><?= $success; ?></li>
 					</ul>
 				</div>
-				<?php
-			}
-			if(validation_errors() || isset($error)) {
-				?>
+			<?php endif; ?>
+
+			<?php if(validation_errors() || isset($errors)) : ?>
+				<?php $form_errors = explode("\n",validation_errors());?>
 				<div class="alert alert-danger py-xl-3">
 					<ul>
-						<?php
-						$form_errors = explode("\n",validation_errors());
-						echo '<li>'. $error .'</li>';
-						foreach ($form_errors as $form_error):?>
-							<li><?php echo $form_error; ?></li>
-						<?php endforeach;
-						?>
+						<?php if ($errors) :
+							foreach ($errors as $error) : ?>
+							<li><?= $error?></li>
+							<?php endforeach;
+						endif;
+						for ($i=0; $i<(count($form_errors) - 1); $i++) : ?>
+							<li><?= $form_errors[$i]; ?></li>
+						<?php endfor; ?>
 					</ul>
 				</div>
-				<?php
-			}
-			?>
+			<?php endif; ?>
+
 			<div class="card shadow">
 				<div class="card-header bg-dark rounded-top">
 					<h3 class="text-center my-xl-1 text-light">Edit User</h3>
@@ -101,13 +97,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 											<label for="state">State of Origin:</label>
 											<select name="state_of_origin" id="state" class="form-control">
 												<option value="">--select state--</option>
-												<?php
-												foreach ($states as $state) {
-													?>
+												<?php foreach ($states as $state) : ?>
 													<option value="<?= $state['id'] ?>" <?= ($user['state_of_origin'] == $state['id']) ? 'selected' : '' ?> ><?= $state['name'] ?></option>
-													<?php
-												}
-												?>
+												<?php endforeach; ?>
 											</select>
 										</div>
 									</div>
@@ -116,13 +108,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 											<label for="lga">Local Government Area:</label>
 											<select name="local_government_area" id="lga" class="form-control">
 												<option value="">--select local government area--</option>
-												<?php
-												foreach ($lgas as $lga) {
-													?>
+												<?php foreach ($lgas as $lga) : ?>
 													<option value="<?= $lga['id'] ?>" <?= ($user['local_government_area'] == $lga['id']) ? 'selected' : '' ?> ><?= $lga['name'] ?></option>
-													<?php
-												}
-												?>
+												<?php endforeach; ?>
 											</select>
 										</div>
 									</div>

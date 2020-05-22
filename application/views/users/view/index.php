@@ -5,15 +5,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <div class="container-xl mt-xl-3">
 	<div class="row justify-content-center">
 		<div class="col-xl-10">
-			<?php
-			if (isset($user['message'])) : ?>
+			<?php $key = md5(rand()); if (isset($user['message'])) : ?>
 			<div class="alert alert-danger col-xl-12 text-center btn-group-sm py-xl-2" id="message_div">
 				<h5><?= $user['message'] ?></h5>
 				<div class="btn-group-sm">
 					<button class="btn btn-primary" id="cancel_delete_btn">Cancel Delete</button>
 					<button class="btn btn-danger" id="confirm_delete_btn">Confirm Delete</button>
 				</div>
-				<form action="<?= site_url('user/confirm/delete/'.$user['id'].'/2920157345') ?>" method="post" id="confirm_delete_form"></form>
+				<form action="<?= site_url('user/confirm/delete/'.$user['id'].'/'.$key) ?>" method="post" id="confirm_delete_form">
+					<input type="hidden" value="<?= $key ?>" name="key">
+				</form>
 			</div>
 			<?php endif; ?>
 			<div class="card">

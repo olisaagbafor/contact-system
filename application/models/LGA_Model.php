@@ -10,16 +10,15 @@ class LGA_Model extends CI_Model
 
 	public function fetchLGA($lga = FALSE)
 	{
-		if ($lga === FALSE)
-		{
+		if ($lga === FALSE) :
 			$query = $this->db->get($this->lga);
 			return $query->result_array();
-		} else {
+		else :
 			$query = $this->db->get_where($this->lga, array('id' => $lga))->row_array();
 			return $query['name'];
-		}
-
+		endif;
 	}
+
 
 	public function getLGA($state_id)
 	{
