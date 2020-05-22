@@ -15,8 +15,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			<div class="alert alert-danger col-xl-12 py-xl-3 mt-xl-3">
 				<?= $error; ?>
 			</div>
-		<?php endif;
-		?>
+		<?php endif; ?>
 	</div>
 </div>
 
@@ -69,9 +68,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			</tr>
 			</thead>
 			<tbody>
-			<?php
-			foreach ($users as $user) {
-				?>
+			<?php foreach ($users as $user) :	?>
 				<tr class="text-center">
 					<td><img src="<?= site_url('photo/'.$user['photo']) ?>" alt="" class="img-fluid rounded-circle ml-xl-4 shadow" style="width: 40px;"></td>
 					<td><?= $user['surname'].' '.$user['first_name'].' '.$user['other_names'] ; ?></td>
@@ -84,9 +81,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<a href="<?= site_url('user/delete/'.$user['id'])?>" class="btn btn-danger btn-sm">Delete</a>
 					</td>
 				</tr>
-			<?php
-			}
-			?>
+			<?php endforeach; ?>
 			</tbody>
 		</table>
 	</div>

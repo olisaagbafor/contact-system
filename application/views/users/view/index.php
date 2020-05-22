@@ -58,7 +58,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 							<div class="row mb-xl-4">
 								<div class="col-xl-6 shadow-sm">
-									<h6><strong class="text-muted">State of Origin: </strong> <br/><?= $user['state'] ?></h6>
+									<h6><strong class="text-muted">State of Origin: </strong> <br/><?= $user['state']['name'] ?></h6>
 								</div>
 								<div class="col-xl-6 shadow-sm">
 									<h6><strong class="text-muted">Local Govt: </strong> <br/><?= $user['lga'] ?></h6>

@@ -50,7 +50,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |		my-controller/my-method	-> my_controller/my_method
 */
 $route['default_controller'] = 'welcome';
+$route['states'] = 'states';
 $route['state/(:num)'] = 'welcome/getLGA/$1';
+$route['state/edit/(:num)']['GET'] = 'states/edit/$1';
+$route['state/edit/(:num)']['POST'] = 'states/update/$1';
 $route['user/edit/(:num)'] = 'users/edit/$1';
 $route['user/view/(:num)'] = 'users/view/$1';
 $route['user/delete/(:num)'] = 'users/destroy/$1';

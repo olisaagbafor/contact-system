@@ -144,7 +144,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         $('#state').change(function () {
             var state_id = $(this).val();
             $.get(window.origin + '/contact-system/state/' + state_id, null, function (data) {
-                console.log(data);
                 $('#lga').html(data);
             })
         });

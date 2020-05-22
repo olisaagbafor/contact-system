@@ -13,8 +13,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				</div>
 			<?php endif; ?>
 
-			<?php if(validation_errors() || isset($error)) : ?>
-				<?php $form_errors = explode("\n",validation_errors());?>
+			<?php if(validation_errors() || isset($error)) :
+				$form_errors = explode("\n",validation_errors());?>
 				<div class="alert alert-danger py-xl-3">
 					<ul>
 						<?php if ($error) : ?>
@@ -150,7 +150,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	    $('#state').change(function () {
 			var state_id = $(this).val();
 			$.get(window.origin + '/contact-system/state/' + state_id, null, function (data) {
-			    console.log(data);
 				$('#lga').html(data);
             })
         });

@@ -44,4 +44,12 @@ $config = array(
 			'rules' => 'required|trim'
 		),
 	),
+
+	'location' => array(
+		array(
+			'field' => 'name',
+			'label' => 'Name',
+			'rules' => 'required|trim'
+		),
+	),
 );

@@ -14,7 +14,13 @@ class States_Model extends CI_Model
 			return $query->result_array();
 		else :
 			$query = $this->db->get_where($this->states, array('id' => $state))->row_array();
-			return $query['name'];
+			return $query;
 		endif;
+	}
+
+	public function updateState($state)
+	{
+		$query = $this->db->update($this->states, $this->input->post(), array('id' => $state));
+		return $query;
 	}
 }
