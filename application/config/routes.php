@@ -51,6 +51,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 $route['default_controller'] = 'welcome';
 $route['states'] = 'states';
+$route['lgas'] = 'lgas';
 $route['state/(:num)'] = 'welcome/getLGA/$1';
 $route['state/setup/edit/(:num)']['GET'] = 'states/edit/$1';
 $route['state/setup/edit/(:num)']['POST'] = 'states/update/$1';

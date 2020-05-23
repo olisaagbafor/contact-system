@@ -18,7 +18,7 @@ function color(&$i)
 <div class="container-xl col-xl-8 mx-xl-auto my-xl-2">
 	<div class="row">
 		<div class="col-xl-12 float-xl-right my-xl-3">
-			<a href="<?= site_url('state/setup/create') ?>" class="btn btn-dark float-xl-right">Add New State</a>
+			<a href="<?= site_url('lga/setup/create') ?>" class="btn btn-dark float-xl-right">Add New LGA</a>
 		</div>
 	</div>
 	<div class="table-responsive">
@@ -27,17 +27,19 @@ function color(&$i)
 			<tr class="text-center bg">
 				<th>#</th>
 				<th>State:</th>
+				<th>LGA:</th>
 				<th>Action</th>
 			</tr>
 			</thead>
 			<tbody>
-			<?php foreach ($states as $state) : ?>
+			<?php foreach ($lgas as $lga) : ?>
 				<tr class="text-center">
-					<td> <strong class="p-xl-2 rounded-pill text-light <?= color($i) ?>"><?= (strlen($state['id']) == 1) ? '0'.$state['id'] : $state['id']; ?></strong> </td>
-					<td><?= $state['name']; ?></td>
+					<td> <strong class="p-xl-2 rounded-pill text-light <?= color($i) ?>"><?= (strlen($lga['id']) == 1) ? '0'.$lga['id'] : $lga['id']; ?></strong> </td>
+					<td><?= $lgas['state']['name']; ?></td>
+					<td><?= $lga['name']; ?></td>
 					<td>
-						<a href="<?= site_url('state/setup/edit/'.$state['id'])?>" class="btn btn-primary btn-sm">Edit</a>
-						<a href="<?= site_url('state/delete/'.$state['id'])?>" class="btn btn-danger btn-sm">Delete</a>
+						<a href="<?= site_url('lga/setup/edit/'.$lga['id'])?>" class="btn btn-primary btn-sm">Edit</a>
+						<a href="<?= site_url('lga/delete/'.$lga['id'])?>" class="btn btn-danger btn-sm">Delete</a>
 					</td>
 				</tr>
 				<?php $i++;  ?>
