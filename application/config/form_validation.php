@@ -31,7 +31,17 @@ $config = array(
 		array(
 			'field' => 'email',
 			'label' => 'Email',
-			'rules' => 'required|valid_email|trim'
+			'rules' => 'required|valid_email|trim|is_unique[users.email]'
+		),
+		array(
+			'field' => 'password',
+			'label' => 'Password',
+			'rules' => 'required|trim'
+		),
+		array(
+			'field' => 'confirm_password',
+			'label' => 'Confirm Password',
+			'rules' => 'required|matches[password]|trim',
 		),
 		array(
 			'field' => 'state_of_origin',
@@ -49,6 +59,18 @@ $config = array(
 		array(
 			'field' => 'name',
 			'label' => 'Name',
+			'rules' => 'required|trim'
+		),
+	),
+	'login' => array(
+		array(
+			'field' => 'email',
+			'label' => 'User Email',
+			'rules' => 'required|valid_email|trim'
+		),
+		array(
+			'field' => 'password',
+			'label' => 'User Password',
 			'rules' => 'required|trim'
 		),
 	),

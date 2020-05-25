@@ -21,9 +21,7 @@ class Users extends CI_Controller
 
 	public function index()
 	{
-		$this->load->view('users/layout/master');
 		$this->load->view('users/register/index', $this->data);
-		$this->load->view('users/layout/footer');
 	}
 
 
@@ -44,6 +42,8 @@ class Users extends CI_Controller
 			$data['lgas'] = $this->data['lga'];
 		else :
 			$input = $this->input->post();
+			$input['password'] = password_hash($this->input->post('password'), 1);
+			unset($input['confirm_password']);
 			$input['photo'] = $this->upload->data('file_name');
 			if (!($this->User->register($input))) :
 				$data['error'] = "Failed to Register this User!, Contact system Admin for help!";
@@ -54,9 +54,7 @@ class Users extends CI_Controller
 			endif;
 		endif;
 
-		$this->load->view('users/layout/master');
 		$this->load->view('users/register/index', $data);
-		$this->load->view('users/layout/footer');
 	}
 
 

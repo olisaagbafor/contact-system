@@ -50,8 +50,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |		my-controller/my-method	-> my_controller/my_method
 */
 $route['default_controller'] = 'welcome';
+$route['login']['GET'] = 'auth';
+$route['login']['POST'] = 'auth/login';
+$route['logout']['POST'] = 'auth/logout';
+$route['/'] = 'welcome';
 $route['states'] = 'states';
 $route['lgas'] = 'lgas';
+$route['404_override'] = 'welcome/error';
 $route['state/(:num)'] = 'welcome/getLGA/$1';
 $route['state/setup/edit/(:num)']['GET'] = 'states/edit/$1';
 $route['state/setup/edit/(:num)']['POST'] = 'states/update/$1';
@@ -63,7 +68,7 @@ $route['user/view/(:num)'] = 'users/view/$1';
 $route['user/delete/(:num)'] = 'users/destroy/$1';
 $route['user/confirm/delete/(:num)/(:any)']['POST'] = 'users/destroy/$1/$2';
 $route['user/update/(:num)'] = 'users/update/$1';
-$route['register'] = 'users';
-$route['registry'] = 'users/store';
+$route['register']['GET'] = 'users';
+$route['register']['POST'] = 'users/store';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

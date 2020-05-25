@@ -24,6 +24,12 @@ class Users_Model extends CI_Model
 		endif;
 	}
 
+	public function fetchUserByEmail($email)
+	{
+		$query = $this->db->get_where($this->users, array('email' => $email));
+		return $query->row_array();
+	}
+
 
 
 	public function updateUser($user, $post)

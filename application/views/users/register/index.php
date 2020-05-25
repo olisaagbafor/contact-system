@@ -2,7 +2,17 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
 
-<div class="container-xl">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Contact System - Login</title>
+	<link rel="stylesheet" href="<?= site_url('assets/css/bootstrap.css')?>">
+	<link rel="stylesheet" href="<?= site_url('assets/css/custom.css')?>">
+	<link rel="stylesheet" href="<?= site_url('assets/font-awesome/css/font-awesome.css')?>">
+</head>
+<body>
+	<div class="container-xl">
 	<div class="row my-5 justify-content-center">
 		<div class="col-xl-8">
 			<?php if (isset($success) || isset($upload_data)) : ?>
@@ -32,7 +42,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					<h3 class="text-center my-xl-1 text-light">Register User</h3>
 				</div>
 				<div class="card-body">
-					<form action="<?= site_url('registry') ?>" method="post" enctype="multipart/form-data">
+					<form action="<?= site_url('register') ?>" method="post" enctype="multipart/form-data">
 						<div class="row">
 							<div class="col-xl-9">
 								<div class="form-row">
@@ -66,6 +76,21 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 										<div class="form-group">
 											<label for="email">Email:</label>
 											<input type="email" id="email" name="email" value="<?= set_value('email')?>" class="form-control">
+										</div>
+									</div>
+								</div>
+
+								<div class="form-row">
+									<div class="col-xl-6">
+										<div class="form-group">
+											<label for="password">Password:</label>
+											<input type="password" id="password" name="password" value="<?= set_value('password')?>" class="form-control">
+										</div>
+									</div>
+									<div class="col-xl-6">
+										<div class="form-group">
+											<label for="confirm-password">Confirm Password:</label>
+											<input type="password" id="confirm-password" name="confirm_password" class="form-control">
 										</div>
 									</div>
 								</div>
@@ -132,8 +157,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							</div>
 						</div>
 
-						<div class="row flex-row-reverse mr-xl-5">
-							<div class="form-group">
+						<div class="dropdown-divider"></div>
+
+						<div class="row flex-row-reverse mr-xl-0">
+							<div class="form-group float-xl-right">
+								<a href="<?= site_url('login') ?>" class="btn btn-primary mr-xl-5"><i class="fa fa-sign-in"></i> Login</a>
+								<a href="<?= site_url('register') ?>" class="btn btn-secondary"><i class="fa fa-refresh"></i> Reset</a>
 								<input type="submit" class="btn btn-dark" value="Register">
 							</div>
 						</div>
@@ -143,20 +172,26 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		</div>
 	</div>
 </div>
+<footer>
+	<script src="<?= site_url('assets/js/jquery.js') ?>"></script>
+	<script src="<?= site_url('assets/dist/imoViewer-min.js') ?>"></script>
+	<script>
+        $(document).ready(function () {
+            $('#state').change(function () {
+                var state_id = $(this).val();
+                $.get(window.origin + '/contact-system/state/' + state_id, null, function (data) {
+                    $('#lga').html(data);
+                })
+            });
 
-<script src="<?= site_url('assets/dist/imoViewer-min.js') ?>"></script>
-<script>
-	$(document).ready(function () {
-	    $('#state').change(function () {
-			var state_id = $(this).val();
-			$.get(window.origin + '/contact-system/state/' + state_id, null, function (data) {
-				$('#lga').html(data);
+
+            $('#file-input').imoViewer({
+                'preview': '#image-previewer',
             })
-        });
-
-
-        $('#file-input').imoViewer({
-            'preview': '#image-previewer',
         })
-    })
-</script>
+	</script>
+</footer>
+</body>
+</html>
+
+

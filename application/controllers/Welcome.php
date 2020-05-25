@@ -1,6 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+
 class Welcome extends CI_Controller {
 
 	public function __construct()
@@ -41,5 +42,11 @@ class Welcome extends CI_Controller {
 	{
 		$data = $this->LGA->getLGA($state_id);
 		$this->load->view('request', compact('data'));
+	}
+
+
+	public function error()
+	{
+		log_message('error','My Friend This is error Page!');
 	}
 }

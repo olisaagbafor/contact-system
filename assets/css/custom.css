@@ -1,0 +1,13 @@
+
+.input-icon, .input-icon-reversed {
+	padding: 5px;
+	min-width: 30px;
+}
+
+.input-icon {
+	border-radius: 0 4px 4px 0;
+}
+
+.input-icon-reversed {
+	border-radius: 4px 0 0 4px;
+}
